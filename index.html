@@ -1093,7 +1093,7 @@
             (data) => {
               const newFiles = JSON.parse(data);
               if (newFiles.encrypted) {
-                input.placeholder = '密码错误';
+                input.placeholder = 'Contraseña incorrecta...';
               } else {
                 window.fileCache.set(newFiles.parent, newFiles);
                 window.fileCache.set(`${newFiles.parent}/.upload`, passwd);
