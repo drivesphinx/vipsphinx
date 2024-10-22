@@ -2,22 +2,12 @@
 <html>
   <head>
     <script>
-      /**
-       * SCF_GATEWAY：SCF 云函数网关地址
-       * SITE_NAME：站点名称 https://vip.sphx.workers.dev/
-       */
-      window.GLOBAL_CONFIG = { 
-        SCF_GATEWAY: "//vip.sphx.workers.dev",
-        SITE_NAME: "SphinxDrive VIP",
+      window.GLOBAL_CONFIG = {
+        SCF_GATEWAY: `//vip.sphx.workers.dev`,
+        SITE_NAME: `SphinxDrive VIP`, 
+        PRELOAD: false,
         IS_CF: true,
       };
-      if (window.GLOBAL_CONFIG.SCF_GATEWAY.indexOf("workers") === -1) {
-        window.GLOBAL_CONFIG.SCF_GATEWAY += "/fodi/";
-        window.GLOBAL_CONFIG.IS_CF = false;
-      }
-      // if (location.protocol === 'http:') {
-      //     location.href = location.href.replace(/http/, 'https');
-      // }
     </script>
     <meta charset="utf-8" />
     <meta
@@ -26,28 +16,12 @@
     />
     <script
       type="module"
-      src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/ionicons/4.6.3/ionicons/ionicons.esm.js"
+      src="//lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/ionicons/4.6.3/ionicons/ionicons.esm.js"
     ></script>
     <script
-      nomodule=""
-      src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/ionicons/4.6.3/ionicons/ionicons.js"
+      nomodule
+      src="//lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/ionicons/4.6.3/ionicons/ionicons.js"
     ></script>
-    <script src="//s0.pstatp.com/cdn/expire-1-M/marked/0.6.2/marked.min.js"></script>
-    <script src="//s0.pstatp.com/cdn/expire-1-M/highlight.js/9.15.6/highlight.min.js"></script>
-    <link
-      href="//s0.pstatp.com/cdn/expire-1-M/highlight.js/9.15.6/styles/github.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="//s0.pstatp.com/cdn/expire-1-M/github-markdown-css/3.0.1/github-markdown.min.css"
-      rel="stylesheet"
-    />
-    <script src="//s0.pstatp.com/cdn/expire-1-M/jquery/3.4.0/jquery.min.js"></script>
-    <script src="//s0.pstatp.com/cdn/expire-1-M/fancybox/3.5.7/jquery.fancybox.min.js"></script>
-    <link
-      href="//s0.pstatp.com/cdn/expire-1-M/fancybox/3.5.7/jquery.fancybox.min.css"
-      rel="stylesheet"
-    />
     <style>
       .sk-folding-cube {
         margin: 20px auto;
@@ -67,8 +41,9 @@
         -ms-transform: scale(1.1);
         transform: scale(1.1);
       }
+
       .sk-folding-cube .sk-cube:before {
-        content: "";
+        content: '';
         position: absolute;
         top: 0;
         left: 0;
@@ -81,30 +56,37 @@
         -ms-transform-origin: 100% 100%;
         transform-origin: 100% 100%;
       }
+
       .sk-folding-cube .sk-cube2 {
         -webkit-transform: scale(1.1) rotateZ(90deg);
         transform: scale(1.1) rotateZ(90deg);
       }
+
       .sk-folding-cube .sk-cube3 {
         -webkit-transform: scale(1.1) rotateZ(180deg);
         transform: scale(1.1) rotateZ(180deg);
       }
+
       .sk-folding-cube .sk-cube4 {
         -webkit-transform: scale(1.1) rotateZ(270deg);
         transform: scale(1.1) rotateZ(270deg);
       }
+
       .sk-folding-cube .sk-cube2:before {
         -webkit-animation-delay: 0.3s;
         animation-delay: 0.3s;
       }
+
       .sk-folding-cube .sk-cube3:before {
         -webkit-animation-delay: 0.6s;
         animation-delay: 0.6s;
       }
+
       .sk-folding-cube .sk-cube4:before {
         -webkit-animation-delay: 0.9s;
         animation-delay: 0.9s;
       }
+
       @-webkit-keyframes sk-foldCubeAngle {
         0%,
         10% {
@@ -112,12 +94,14 @@
           transform: perspective(140px) rotateX(-180deg);
           opacity: 0;
         }
+
         25%,
         75% {
           -webkit-transform: perspective(140px) rotateX(0deg);
           transform: perspective(140px) rotateX(0deg);
           opacity: 1;
         }
+
         90%,
         100% {
           -webkit-transform: perspective(140px) rotateY(180deg);
@@ -133,12 +117,14 @@
           transform: perspective(140px) rotateX(-180deg);
           opacity: 0;
         }
+
         25%,
         75% {
           -webkit-transform: perspective(140px) rotateX(0deg);
           transform: perspective(140px) rotateX(0deg);
           opacity: 1;
         }
+
         90%,
         100% {
           -webkit-transform: perspective(140px) rotateY(180deg);
@@ -147,23 +133,53 @@
         }
       }
 
-      .password-wrapper {
+      html *[data-hidden='1'] {
+        display: none;
+      }
+
+      .dplayer {
+        aspect-ratio: 16 / 9;
+      }
+
+      .list-header {
+        padding: 0;
+      }
+
+      .upload-entry-wrapper {
+        height: 2.5em;
+        display: flex;
+        border-bottom: solid rgb(218, 215, 215) 1px;
+      }
+
+      .upload-entry-btn {
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        border: none;
+        outline: none;
+        background: white;
+        cursor: pointer;
+      }
+
+      .password-wrapper,
+      .file-upload-chooser {
         display: flex;
         align-items: center;
+        justify-content: center;
+        column-gap: 0.6em;
+        margin-top: 1em;
       }
 
       .password {
         margin: 0 auto;
-        padding-top: 1em;
-        display: none;
       }
 
       .password input {
-       width: 300px;
+         width: 300px;
     font-size: 16px;
     background: #ffffff;
     outline: none;
-    border: solid rgb(233 187 57) 3px;
+    border: solid rgb(0 78 255) 3px;
     border-radius: 50px;
     font-weight: 600;
     margin: 5px;
@@ -171,10 +187,13 @@
     text-align: center;
       }
 
-      .password button {
-         width: 120px;
+      .password button,
+      .file-upload-chooser button,
+      .file-upload-chooser select,
+      .file-upload-label {
+        width: 120px;
          font-size: 16px;
-         background: #f9ca1d;
+         background: #c4abff;
          outline: none;
          border: solid rgb(67 36 36) 3px;
          border-radius: 50px;
@@ -184,25 +203,83 @@
          text-align: center;
       }
 
-      .password button:hover {
+      .password button:hover,
+      .upload-entry-btn:hover,
+      .file-upload-chooser button:hover,
+      .file-upload-label:hover {
         color: white;
         background: rgb(218, 215, 215);
       }
 
-      pre * {
-        font-family: Courier New;
+      .file-upload-wrapper {
+        font-size: 0.8em;
+        padding: 0 1em;
+      }
+
+      .file-upload-input {
+        display: none;
+      }
+
+      .file-upload-label {
+        display: inline-block;
+        line-height: 2em;
+      }
+
+      .file-upload-name {
+        white-space: nowrap;
+        overflow: hidden;
+        width: 10em;
+        text-align: center;
+      }
+
+      .file-upload-progress {
+        margin: 1em 0;
+        padding: 1em;
+        background-color: rgb(245, 245, 245);
+        white-space: nowrap;
+        width: fit-content;
+        min-width: 100%;
+        display: grid;
+      }
+
+      .file-upload-progress .log-separator {
+        background-image: url("data:image/svg+xml;utf8,<svg width='9' height='9' xmlns='http://www.w3.org/2000/svg' version='1.1'><text y='10'>=</text></svg>");
+        padding: 5px 0;
+        margin: 5px 0;
+      }
+
+      .markdown-body,
+      .markdown-body * {
+        font-family: initial;
+      }
+
+      pre,
+      code,
+      pre *,
+      code * {
+        font-family: Consolas, Monaco, Lucida Console, Liberation Mono,
+          DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, Cascadia Code,
+          monospace !important;
       }
 
       .preview {
-        display: none;
         font-size: 0.8em;
+        height: 100%;
       }
 
-      .content {
+      .preview .content {
         clear: both;
-        padding: 0 1em;
+        padding: 0 1em 1em 1em;
         margin: 0 auto;
-        /* text-align: center; */
+        width: fit-content;
+        height: fit-content;
+        min-width: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .preview .content pre {
+        margin: 0;
       }
 
       .file-name {
@@ -228,7 +305,8 @@
         -khtml-user-select: none;
         -webkit-user-select: none;
         -ms-user-select: none;
-        background-color: #f9ca1d; font-family: cursive; font-size: 20px;
+        background-color: #b7a5ff; font-family: cursive; font-size: 20px;
+
       }
 
       .btn:hover {
@@ -242,11 +320,10 @@
 
       #arrow-back,
       #arrow-forward {
-        color: rgb(181, 150, 34);
+        color: rgb(218, 215, 215);
       }
 
       .loading-wrapper {
-        display: none;
         position: fixed;
         height: 2em;
         line-height: 2em;
@@ -267,7 +344,7 @@
 
       ion-icon {
         font-size: 1.5em;
-        color: #f9ca1d;
+        color: #1d38f9;
       }
 
       * {
@@ -277,7 +354,7 @@
       }
 
       .markdown-body {
-        min-width: 200px;
+        width: 100%;
         margin: 0 auto;
         padding: 0.7em 1em;
         font-size: 0.8em;
@@ -321,11 +398,11 @@
       }
 
       .header {
-        padding: 0 1.8em 0 8em;
+        padding: 0 1.8em 0 1em;
         height: 100%;
         display: flex;
         align-items: center;
-        border-bottom: solid rgb(226 226 226) 1px;
+        border-bottom: solid rgb(218, 215, 215) 1px;
       }
 
       .logo {
@@ -334,8 +411,6 @@
 
       .site {
         white-space: nowrap;
-        /* margin-left: auto;
-                padding-left: 2em; */
       }
 
       .nav {
@@ -379,7 +454,6 @@
 
       .left {
         position: absolute;
-        /* display: inline-grid; */
         width: 20%;
         height: 100%;
         font-size: 0.8em;
@@ -411,14 +485,14 @@
 
       .row {
         height: 2.5em;
-        padding: 0 3em 0 3em;
+        padding: 0 0.8em 0 1em;
         display: flex;
         align-items: center;
         border-bottom: solid rgb(218, 215, 215) 1px;
       }
 
       .row.file-wrapper {
-        font-size: 1em;
+        font-size: 1.0em;
         padding: 0 3em;
         height: 3em;
       }
@@ -460,6 +534,10 @@
         margin-left: auto;
       }
 
+      .size * {
+        display: inline;
+      }
+
       @media screen and (max-width: 1000px) {
         .left {
           display: none;
@@ -481,7 +559,7 @@
         }
 
         .file-name {
-          overflow-x: scroll;
+          overflow-x: auto;
           height: 100%;
         }
       }
@@ -533,9 +611,9 @@
     <script>
       function createCORSRequest(method, url, timeout) {
         let xhr = new XMLHttpRequest();
-        if ("withCredentials" in xhr) {
+        if ('withCredentials' in xhr) {
           xhr.open(method, url, true);
-        } else if (typeof XDomainRequest !== "undefined") {
+        } else if (typeof XDomainRequest !== 'undefined') {
           xhr = new XDomainRequest();
           xhr.open(method, url);
         } else {
@@ -548,7 +626,7 @@
       }
 
       function sendRequest(method, url, data, headers, callback, error, times) {
-        let xhr = createCORSRequest(method, url, 2500);
+        const xhr = createCORSRequest(method, url, 2500);
         xhr.onreadystatechange = () => {
           if (xhr.readyState == 4 && xhr.status == 200) {
             callback(xhr.responseText);
@@ -565,12 +643,12 @@
           });
           if (times < 1) {
             sendRequest(method, url, data, headers, callback, error, times + 1);
-          } else if (typeof error === "function") {
+          } else if (typeof error === 'function') {
             error();
           }
         };
         if (headers) {
-          for (key in headers) {
+          for (const key in headers) {
             if (headers.hasOwnProperty(key)) {
               xhr.setRequestHeader(key, headers[key]);
             }
@@ -580,6 +658,83 @@
           xhr.send(data);
         } else {
           xhr.send();
+        }
+      }
+
+      function fromCdn(cdnName, ...resources) {
+        const cdnMap = {
+          jsdelivr: '//cdn.jsdelivr.net/npm',
+          taobao: '//registry.npmmirror.com',
+          bytedance: '//lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M',
+        };
+        const baseURL = cdnMap[cdnName];
+        return resources.map((r) => `${baseURL}${r}`);
+      }
+
+      function loadResource(resources) {
+        return Promise.all(resources.map(load));
+
+        function load(resource) {
+          if (!window.resourceCache[resource]) {
+            window.resourceCache[resource] = handle();
+          }
+          return window.resourceCache[resource];
+
+          function handle() {
+            return new Promise((resolve, reject) => {
+              const timeout = 5000;
+              let element;
+              switch (resource.split('.').pop()) {
+                case 'css':
+                  element = document.createElement('link');
+                  element.href = resource;
+                  element.rel = 'stylesheet';
+                  break;
+                case 'js':
+                  element = document.createElement('script');
+                  element.src = resource;
+                  break;
+                default:
+                  return reject(new Error('Unsupported resource type'));
+              }
+
+              let loaded = false;
+              element.onload = () => {
+                loaded = true;
+                resolve();
+              };
+
+              function error(reason) {
+                if (!loaded) {
+                  document.head.removeChild(element);
+                  delete window.resourceCache[resource];
+                  reject(new Error(`${reason}: ${resource}`));
+                }
+              }
+              element.onerror = () => error('Failed to load resource');
+              setTimeout(() => error('Resource loading timed out'), timeout);
+
+              document.head.insertBefore(
+                element,
+                document.head.firstElementChild
+              );
+            });
+          }
+        }
+      }
+
+      function putLoadingAnimation(selectorOrElem) {
+        const elem =
+          typeof selectorOrElem === 'string'
+            ? document.querySelector(selectorOrElem)
+            : selectorOrElem;
+        if (!elem.querySelector('.sk-folding-cube')) {
+          elem.innerHTML = '';
+          elem.appendChild(
+            document
+              .getElementById('loading-wrapper-templete')
+              .content.cloneNode(true)
+          );
         }
       }
 
@@ -601,74 +756,49 @@
           }
           renderTreeNode(files);
         }
-        if (document.body.getAttribute("hidden")) {
-          document.body.removeAttribute("hidden");
-        }
-        document.querySelector(".loading-wrapper").style.display = "none";
+        document.querySelector('.loading-wrapper').dataset.hidden = 1;
       }
 
       function renderPath(path) {
         const createPathSpan = (text, path) => {
-          let pathSpan = document.createElement("span");
+          const pathSpan = document.createElement('span');
           pathSpan.innerHTML =
-            text.length > 20 ? text.substring(0, 20) + ".." : text;
-          pathSpan.className = text === "/" ? "nav-arr" : "nav-path";
+            text.length > 20 ? text.substring(0, 20) + '..' : text;
+          pathSpan.className = text === '/' ? 'nav-arr' : 'nav-path';
           if (path) {
             addPathListener(pathSpan, path);
           }
           return pathSpan;
         };
 
-        const paths = path.split("/");
-        let pathSpanWrapper = document.getElementById("path");
-        pathSpanWrapper.innerHTML = "";
+        const paths = path.split('/');
+        const pathSpanWrapper = document.getElementById('path');
+        pathSpanWrapper.innerHTML = '';
         pathSpanWrapper.appendChild(createPathSpan(window.api.root));
-        let continualPath = "/";
-        for (let i = 1; i < paths.length - 1; i++) {
+        let continualPath = '/';
+        for (let i = 1; i < paths.length; i++) {
           continualPath += paths[i];
           pathSpanWrapper.appendChild(createPathSpan(paths[i], continualPath));
-          pathSpanWrapper.appendChild(createPathSpan("/"));
-          continualPath += "/";
+          if (i !== paths.length - 1) {
+            pathSpanWrapper.appendChild(createPathSpan('/'));
+            continualPath += '/';
+          }
         }
-        pathSpanWrapper.appendChild(createPathSpan(paths[paths.length - 1]));
       }
 
       function renderFileList(files) {
-        switchRightDisplay();
-
-        const createFileWrapper = (type, name, time, size, path, url) => {
-          let fileWrapper = document
-            .getElementById("file-wrapper-templete")
-            .content.cloneNode(true);
-          fileWrapper.querySelector("ion-icon").setAttribute("name", type);
-          fileWrapper.querySelector(".name").innerHTML = name;
-          fileWrapper.querySelector(".time").innerHTML = time;
-          fileWrapper.querySelector(".size").innerHTML = size;
-          addFileListLineListener(
-            fileWrapper.querySelector(".row.file-wrapper"),
-            path,
-            url,
-            size
-          );
-          return fileWrapper;
-        };
+        switchRightDisplay('list');
 
         const formatDate = (date) => {
-          const addZero = (num) => (num > 9 ? num : "0" + num);
           date = new Date(date);
+          const addZero = (num) => `${num}`.padStart(2, '0');
           const year = date.getFullYear();
           const month = addZero(date.getMonth() + 1);
           const day = addZero(date.getDate());
           const hour = addZero(date.getHours());
           const minute = addZero(date.getMinutes());
           const second = addZero(date.getSeconds());
-          return "yyyy-MM-dd HH:mm:ss"
-            .replace("yyyy", year)
-            .replace("MM", month)
-            .replace("dd", day)
-            .replace("HH", hour)
-            .replace("mm", minute)
-            .replace("ss", second);
+          return `${year}-${month}-${day} ${hour}:${minute}:${second}`;
         };
 
         const formatSize = (size) => {
@@ -677,49 +807,54 @@
             size /= 1024;
             count++;
           }
-          size = size.toFixed(2);
-          switch (count) {
-            case 1:
-              size += " KB";
-              break;
-            case 2:
-              size += " MB";
-              break;
-            case 3:
-              size += " GB";
-              break;
-            case 4:
-              size += " TB";
-              break;
-            case 5:
-              size += " PB";
-              break;
-            default:
-              size += " B";
-          }
-          return size;
+          return `${size.toFixed(2)} ${
+            ['<pre> </pre>', 'K', 'M', 'G', 'T', 'P'][count]
+          }B`;
         };
 
-        let fileList = document.getElementById("file-list");
-        fileList.innerHTML = "";
+        const createFileWrapper = (type, name, time, size, path, url) => {
+          const fileWrapper = document
+            .getElementById('file-wrapper-templete')
+            .content.cloneNode(true);
+          fileWrapper.querySelector('ion-icon').setAttribute('name', type);
+          fileWrapper.querySelector('.name').innerHTML = name;
+          fileWrapper.querySelector('.time').innerHTML = formatDate(time);
+          fileWrapper.querySelector('.size').innerHTML = formatSize(size);
+          addFileListLineListener(
+            fileWrapper.querySelector('.row.file-wrapper'),
+            path,
+            url,
+            size
+          );
+          return fileWrapper;
+        };
+
+        const fileList = document.getElementById('file-list');
+        fileList.innerHTML = '';
         files.files.forEach((file) => {
-          if (file.name.split(".").pop() === "md") {
+          if (file.name.endsWith('.md')) {
             if (file.url) {
               renderMarkdown(
-                files.parent + (files.parent === "/" ? "" : "/") + file.name,
+                files.parent + (files.parent === '/' ? '' : '/') + file.name,
                 file.url
               );
             }
           }
-          if (file.name !== "README.md") {
-            const parent = files.parent === window.api.root ? "" : files.parent;
+          if (file.name === '.upload') {
+            document.querySelector('.upload-entry-wrapper').dataset.hidden = 0;
+            document.querySelector('.upload-entry-btn').onclick = () => {
+              window.backFordwardCache.preview = true;
+              switchRightDisplay('upload');
+            };
+          } else if (file.name !== 'README.md') {
+            const parent = files.parent === window.api.root ? '' : files.parent;
             fileList.appendChild(
               createFileWrapper(
-                file.url ? "document" : "folder",
+                file.url ? 'document' : 'folder',
                 file.name,
-                formatDate(file.time),
-                formatSize(file.size),
-                parent + "/" + file.name,
+                file.time,
+                file.size,
+                parent + '/' + file.name,
                 file.url
               )
             );
@@ -729,34 +864,34 @@
 
       async function renderTreeNode(files) {
         const createTreeNodeWrapper = (array, type, name, path) => {
-          let treeNodeWrapper = document
-            .getElementById("tree-node-wrapper-template")
+          const treeNodeWrapper = document
+            .getElementById('tree-node-wrapper-template')
             .content.cloneNode(true);
-          let icons = treeNodeWrapper.querySelectorAll("ion-icon");
-          icons[0].setAttribute("name", array);
-          icons[1].setAttribute("name", type);
-          treeNodeWrapper.querySelector(".tree-node-name").innerText = name;
+          const icons = treeNodeWrapper.querySelectorAll('ion-icon');
+          icons[0].setAttribute('name', array);
+          icons[1].setAttribute('name', type);
+          treeNodeWrapper.querySelector('.tree-node-name').innerText = name;
           treeNodeWrapper.appendNode = (node) =>
-            treeNodeWrapper.querySelector(".tree-node-wrapper").append(node);
+            treeNodeWrapper.querySelector('.tree-node-wrapper').append(node);
           addTreeNodeListener(
-            treeNodeWrapper.querySelector(".tree-node"),
+            treeNodeWrapper.querySelector('.tree-node'),
             path
           );
           return treeNodeWrapper;
         };
 
-        const paths = files.parent.split("/");
-        let absolutePath = (max) => {
-          let absolutePath = "";
+        const paths = files.parent.split('/');
+        const absolutePath = (max) => {
+          let absPath = '';
           for (let j = 1; j <= max; j++) {
-            absolutePath += "/" + paths[j];
+            absPath += '/' + paths[j];
           }
-          return absolutePath;
+          return absPath;
         };
-        let maxIndex = paths.length - 1;
+        const maxIndex = paths.length - 1;
         let currentTreeNode = createTreeNodeWrapper(
-          "arrow-dropdown",
-          "folder-open",
+          'arrow-dropdown',
+          'folder-open',
           paths[maxIndex],
           absolutePath(maxIndex)
         );
@@ -764,10 +899,10 @@
           if (!file.url) {
             currentTreeNode.appendNode(
               createTreeNodeWrapper(
-                "arrow-dropright",
-                "folder",
+                'arrow-dropright',
+                'folder',
                 file.name,
-                files.parent + "/" + file.name
+                files.parent + '/' + file.name
               )
             );
           }
@@ -775,13 +910,13 @@
 
         for (let i = maxIndex - 1; i > 0; i--) {
           const currentTreeNodeParentAbsolutePath = absolutePath(i);
-          let currentTreeNodeParent = createTreeNodeWrapper(
-            "arrow-dropdown",
-            "folder",
+          const currentTreeNodeParent = createTreeNodeWrapper(
+            'arrow-dropdown',
+            'folder',
             paths[i],
             currentTreeNodeParentAbsolutePath
           );
-          let cache = window.fileCache.get(currentTreeNodeParentAbsolutePath);
+          const cache = window.fileCache.get(currentTreeNodeParentAbsolutePath);
           if (cache) {
             cache.files.forEach((file) => {
               if (!file.url) {
@@ -790,10 +925,10 @@
                 } else {
                   currentTreeNodeParent.appendNode(
                     createTreeNodeWrapper(
-                      "arrow-dropright",
-                      "folder",
+                      'arrow-dropright',
+                      'folder',
                       file.name,
-                      currentTreeNodeParentAbsolutePath + "/" + file.name
+                      currentTreeNodeParentAbsolutePath + '/' + file.name
                     )
                   );
                 }
@@ -805,11 +940,11 @@
           currentTreeNode = currentTreeNodeParent;
         }
 
-        const treeRoot = document.getElementById("tree-root");
-        treeRoot.innerHTML = "";
+        const treeRoot = document.getElementById('tree-root');
+        treeRoot.innerHTML = '';
         const cache = window.fileCache.get(window.api.root);
         const currentNodeName =
-          currentTreeNode.querySelector(".tree-node-name").innerText;
+          currentTreeNode.querySelector('.tree-node-name').innerText;
         if (cache) {
           cache.files.forEach((file) => {
             if (!file.url) {
@@ -818,8 +953,8 @@
               } else {
                 treeRoot.append(
                   createTreeNodeWrapper(
-                    "arrow-dropright",
-                    "folder",
+                    'arrow-dropright',
+                    'folder',
                     file.name,
                     window.api.root + file.name
                   )
@@ -833,83 +968,98 @@
       }
 
       async function renderMarkdown(path, url) {
+        const isReadMe = () =>
+          window.backFordwardCache.current +
+            (window.backFordwardCache.current === '/' ? '' : '/') +
+            'README.md' ===
+          path;
+
+        if (isReadMe()) {
+          putLoadingAnimation('#readme');
+        }
+
+        await loadResource(
+          fromCdn(
+            'bytedance',
+            '/github-markdown-css/5.1.0/github-markdown-light.min.css',
+            '/highlight.js/11.4.0/styles/github.min.css',
+            '/highlight.js/11.4.0/highlight.min.js',
+            '/marked/4.0.2/marked.min.js'
+          )
+        );
+
         const render = (text) => {
-          let markedText;
-          try {
-            markedText = marked(text, {
-              gfm: true,
-              highlight: (code, lang, callback) => {
-                return hljs.highlight(lang, code).value;
-              },
-            });
-          } catch (e) {
-            markedText = marked(text, {
-              gfm: true,
-              highlight: (code, lang, callback) => {
-                return hljs.highlight("bash", code).value;
-              },
-            });
-          }
-          if (
-            window.backFordwardCache.current +
-              (window.backFordwardCache.current === "/" ? "" : "/") +
-              "README.md" ===
-            path
-          ) {
-            if (!window.backFordwardCache.preview) {
-              document.getElementById("readme").innerHTML = markedText;
-              document.querySelector(".markdown-body").style.display = "block";
-            }
-          } else if (window.backFordwardCache.preview) {
-            const markdownBody = document.createElement("div");
-            markdownBody.classList.add("markdown-body");
-            markdownBody.innerHTML = markedText;
-            const content = document.querySelector(".content");
-            content.innerHTML = "";
-            content.appendChild(markdownBody);
-          }
-          let cache = window.fileCache.get(path);
+          const cache = window.fileCache.get(path);
           if (!cache || cache === true) {
             window.fileCache.set(path, text);
           }
+
+          // It is not possible to load resources that are not cached and in an encrypted path.
+          const transformHref = (href) => {
+            if (href.startsWith('http') || href.startsWith('//')) {
+              return href;
+            }
+
+            const dummyBase = new URL(
+              window.backFordwardCache.current + '/',
+              location
+            );
+            const absPath = new URL(href, dummyBase).href.slice(
+              location.origin.length
+            );
+            const parent = absPath.slice(0, absPath.lastIndexOf('/')) || '/';
+
+            return (
+              window.fileCache
+                .get(parent)
+                ?.files.find(({ name }) => name === absPath.split('/').pop())
+                ?.url ||
+              window.GLOBAL_CONFIG.SCF_GATEWAY.replace(/\/$/, '') + absPath
+            );
+          };
+
+          const renderer = new marked.Renderer();
+          renderer.image = (href, title, text) =>
+            `<img src="${transformHref(href)}" alt="${text}">`;
+          renderer.link = (href, title, text) =>
+            `<a href="${transformHref(href)}">${text}</a>`;
+
+          text = marked.parse(text, {
+            gfm: true,
+            renderer: renderer,
+            highlight: (code, language, callback) => {
+              try {
+                return hljs.highlight(code, {
+                  language,
+                  ignoreIllegals: true,
+                }).value;
+              } catch (_) {
+                return code;
+              }
+            },
+          });
+
+          if (isReadMe()) {
+            document.getElementById('readme').innerHTML = text;
+          } else if (window.backFordwardCache.preview) {
+            const markdownBody = document.createElement('div');
+            markdownBody.classList.add('markdown-body');
+            markdownBody.innerHTML = text;
+            const content = document.querySelector('.content');
+            content.innerHTML = '';
+            content.appendChild(markdownBody);
+          }
         };
 
-        if (
-          window.backFordwardCache.current +
-            (window.backFordwardCache.current === "/" ? "" : "/") +
-            "README.md" ===
-          path
-        ) {
-          const readme = document.getElementById("readme");
-          if (!readme.querySelector(".sk-folding-cube")) {
-            readme.innerHTML = "";
-            readme.appendChild(
-              document
-                .getElementById("loading-wrapper-templete")
-                .content.cloneNode(true)
-            );
-            document.querySelector(".markdown-body").style.display = "block";
-          }
-        }
-
-        let text = window.fileCache.get(path);
+        const text = window.fileCache.get(path);
         if (text === true) {
           setTimeout(() => renderMarkdown(path, url), 200);
-          // let cacheWaitReadmeFetch = setInterval(() => {
-          //   text = window.fileCache.get(path);
-          //   if (typeof text === "object") {
-          //     render(text, path);
-          //     clearInterval(cacheWaitReadmeFetch);
-          //   } else if (text === false) {
-          //     clearInterval(cacheWaitReadmeFetch);
-          //   }
-          // }, 100);
         } else if (text) {
-          render(text, path);
+          render(text);
         } else {
           window.fileCache.set(path, true);
           sendRequest(
-            "GET",
+            'GET',
             url,
             null,
             null,
@@ -920,21 +1070,21 @@
       }
 
       function handleEncryptedFolder(files) {
-        switchRightDisplay("encrypted");
-        const password = document.querySelector(".password");
-        const input = password.querySelector("input");
-        const button = password.querySelector("button");
+        switchRightDisplay('encrypted');
+        const password = document.querySelector('.password');
+        const input = password.querySelector('input');
+        const button = password.querySelector('button');
         const buttonParent = button.parentElement;
         const buttonClone = button.cloneNode(true);
         buttonParent.replaceChild(buttonClone, button);
-        input.placeholder = "Por favor, introduzca su contraseña...";
-        buttonClone.addEventListener("click", (event) => {
+        input.placeholder = 'Contraseña...';
+        buttonClone.addEventListener('click', (event) => {
           const passwd = input.value;
           if (!input.value) {
             return;
           }
-          input.value = "";
-          input.placeholder = "Verificando...";
+          input.value = '';
+          input.placeholder = 'Verificando...';
           sendRequest(
             window.api.method,
             window.api.url,
@@ -943,26 +1093,26 @@
             (data) => {
               const newFiles = JSON.parse(data);
               if (newFiles.encrypted) {
-                input.placeholder = "Contraseña incorrecta...";
+                input.placeholder = '密码错误';
               } else {
                 window.fileCache.set(newFiles.parent, newFiles);
+                window.fileCache.set(`${newFiles.parent}/.upload`, passwd);
                 fetchFileList(newFiles.parent);
               }
-            },
-            () => window.fileCache.set(newFiles.parent, false)
+            }
           );
         });
       }
 
       function addPathListener(elem, path) {
-        elem.addEventListener("click", (event) => {
+        elem.addEventListener('click', (event) => {
           fetchFileList(path);
           switchBackForwardStatus(path);
         });
       }
 
       function addTreeNodeListener(elem, path) {
-        elem.addEventListener("click", (event) => {
+        elem.addEventListener('click', (event) => {
           fetchFileList(path);
           switchBackForwardStatus(path);
         });
@@ -970,267 +1120,337 @@
 
       function addFileListLineListener(elem, path, url, size) {
         if (url) {
-          elem.addEventListener("click", (event) => {
+          elem.addEventListener('click', (event) => {
             window.backFordwardCache.preview = true;
+            const content = document.querySelector('.content');
+            putLoadingAnimation(content);
+            switchRightDisplay('preview');
+
             const previewHandler = {
               copyTextContent: (source, text) => {
                 let result = false;
-                let target = document.createElement("pre");
-                target.style.opacity = "0";
+                const target = document.createElement('pre');
+                target.style.opacity = '0';
                 target.textContent = text || source.textContent;
                 document.body.appendChild(target);
                 try {
-                  let range = document.createRange();
+                  const range = document.createRange();
                   range.selectNode(target);
                   window.getSelection().removeAllRanges();
                   window.getSelection().addRange(range);
-                  document.execCommand("copy");
+                  document.execCommand('copy');
                   window.getSelection().removeAllRanges();
                   result = true;
-                } catch (e) {}
+                } catch (_) {}
                 document.body.removeChild(target);
                 return result;
               },
               fileType: (suffix) => {
-                Array.prototype.contains = function (search) {
-                  const object = this;
-                  for (const key in object) {
-                    if (object.hasOwnProperty(key)) {
-                      if (eval("/^" + search + "$/i").test(object[key])) {
-                        return true;
-                      }
-                    }
-                  }
-                  return false;
-                };
-                if (
-                  ["bmp", "jpg", "png", "svg", "webp", "gif"].contains(suffix)
-                ) {
-                  return "image";
-                } else if (["mp3", "flac", "wav"].contains(suffix)) {
-                  return "audio";
+                if (['mp3', 'flac', 'wav'].includes(suffix)) {
+                  return 'audio';
                 } else if (
-                  ["mp4", "avi", "mkv", "flv", "m3u8"].contains(suffix)
+                  ['bmp', 'jpg', 'png', 'svg', 'webp', 'gif'].includes(suffix)
                 ) {
-                  return "video";
+                  return 'image';
+                } else if (['md'].includes(suffix)) {
+                  return 'markdown';
                 } else if (
                   [
-                    "txt",
-                    "js",
-                    "json",
-                    "css",
-                    "html",
-                    "java",
-                    "c",
-                    "cpp",
-                    "php",
-                    "cmd",
-                    "ps1",
-                    "bat",
-                    "sh",
-                    "py",
-                    "go",
-                    "asp",
-                  ].contains(suffix)
+                    'doc',
+                    'docx',
+                    'ppt',
+                    'pptx',
+                    'xls',
+                    'xlsx',
+                    'mpp',
+                    'rtf',
+                    'vsd',
+                    'vsdx',
+                  ].includes(suffix)
                 ) {
-                  return "text";
+                  return 'office';
+                } else if (['pdf'].includes(suffix)) {
+                  return 'pdf';
                 } else if (
                   [
-                    "doc",
-                    "docx",
-                    "ppt",
-                    "pptx",
-                    "xls",
-                    "xlsx",
-                    "mpp",
-                    "rtf",
-                    "vsd",
-                    "vsdx",
-                  ].contains(suffix)
+                    'txt',
+                    'ini',
+                    'conf',
+                    'js',
+                    'ts',
+                    'json',
+                    'css',
+                    'html',
+                    'xml',
+                    'yml',
+                    'yaml',
+                    'toml',
+                    'java',
+                    'kt',
+                    'clj',
+                    'scala',
+                    'groovy',
+                    'asm',
+                    'c',
+                    'h',
+                    'cpp',
+                    'hpp',
+                    'cc',
+                    'cs',
+                    'd',
+                    'rs',
+                    'swift',
+                    'm',
+                    'r',
+                    'ml',
+                    'fs',
+                    'erl',
+                    'dart',
+                    'lisp',
+                    'php',
+                    'pas',
+                    'f90',
+                    'cbl',
+                    'cmd',
+                    'vb',
+                    'vbs',
+                    'ps1',
+                    'bat',
+                    'sh',
+                    'awk',
+                    'vim',
+                    'pl',
+                    'py',
+                    'rb',
+                    'go',
+                    'asp',
+                    'hs',
+                    'rkt',
+                    'lua',
+                    'sql',
+                  ].includes(suffix)
                 ) {
-                  return "office";
-                } else if (["md"].contains(suffix)) {
-                  return "markdown";
+                  return 'text';
+                } else if (['upload'].includes(suffix)) {
+                  return 'upload';
+                } else if (
+                  ['mp4', 'avi', 'mkv', 'flv', 'm3u8'].includes(suffix)
+                ) {
+                  return 'video';
+                } else if (['videomagnet'].includes(suffix)) {
+                  return 'videomagnet';
                 }
               },
-              loadResource: (resource, callback) => {
-                let type;
-                switch (resource.split(".").pop()) {
-                  case "css":
-                    type = "link";
-                    break;
-                  case "js":
-                    type = "script";
-                    break;
-                }
-                let element = document.createElement(type);
-                let loaded = false;
-                if (typeof callback === "function") {
-                  element.onload = element.onreadystatechange = () => {
-                    if (
-                      !loaded &&
-                      (!element.readyState ||
-                        /loaded|complete/.test(element.readyState))
-                    ) {
-                      element.onload = element.onreadystatechange = null;
-                      loaded = true;
-                      callback();
-                    }
-                  };
-                }
-                if (type === "link") {
-                  element.href = resource;
-                  element.rel = "stylesheet";
-                } else {
-                  element.src = resource;
-                }
-                document.getElementsByTagName("head")[0].appendChild(element);
-              },
-
               createDplayer: (video, type, elem) => {
-                const host = "//s0.pstatp.com/cdn/expire-1-M";
-                const resources = [
-                  "/dplayer/1.25.0/DPlayer.min.css",
-                  "/dplayer/1.25.0/DPlayer.min.js",
-                  "/hls.js/0.12.4/hls.light.min.js",
-                  "/flv.js/1.5.0/flv.min.js",
-                ];
-                let unloadedResourceCount = resources.length;
-                resources.forEach((resource) => {
-                  previewHandler.loadResource(host + resource, () => {
-                    if (!--unloadedResourceCount) {
-                      let option = {
-                        url: video,
-                      };
-                      if (type === "flv") {
-                        option.type = "flv";
-                      }
-                      new DPlayer({
-                        container: elem,
-                        screenshot: true,
-                        video: option,
-                      });
-                    }
+                return loadResource(
+                  fromCdn(
+                    'bytedance',
+                    '/hls.js/1.1.5/hls.light.min.js',
+                    '/flv.js/1.6.2/flv.min.js',
+                    '/dplayer/1.25.0/DPlayer.min.css',
+                    '/dplayer/1.25.0/DPlayer.min.js'
+                  )
+                ).then(() => {
+                  const option = {
+                    url: video,
+                  };
+                  if (type === 'flv') {
+                    option.type = 'flv';
+                  } else if (type === 'm3u8') {
+                    option.type = 'hls';
+                  }
+                  new DPlayer({
+                    container: elem,
+                    screenshot: true,
+                    video: option,
                   });
                 });
               },
+              fallback: (msg = '预览失败') => {
+                const textWrapper = document.createElement('div');
+                textWrapper.style.textAlign = 'center';
+                textWrapper.innerHTML = msg;
+                content.innerHTML = '';
+                content.appendChild(textWrapper);
+              },
+              scrollToBottom: () => {
+                let start = null;
+                const right = document.querySelector('.right');
+                const scrollToBottom = (timestamp) => {
+                  if (!start) start = timestamp;
+                  const progress = timestamp - start;
+                  const last = right.scrollTop;
+                  right.scrollTo(0, right.scrollTop + 14);
+                  if (right.scrollTop !== last && progress < 1000 * 2) {
+                    window.requestAnimationFrame(scrollToBottom);
+                  }
+                };
+                window.requestAnimationFrame(scrollToBottom);
+              },
             };
 
-            const suffix = path.split(".").pop();
-            let content = document.querySelector(".content");
+            const name = path.split('/').pop();
+            const suffix = name.includes('.')
+              ? name.split('.').pop().toLowerCase()
+              : '__no_suffix__';
 
-            content.appendChild(
-              document
-                .getElementById("loading-wrapper-templete")
-                .content.cloneNode(true)
-            );
-
-            let contentType = previewHandler.fileType(suffix);
+            const contentType = previewHandler.fileType(suffix);
             switch (contentType) {
-              case "image":
-                let img = new Image();
-                img.style.maxWidth = "100%";
-                img.src = url;
-                let fancy = document.createElement("a");
-                fancy.setAttribute("data-fancybox", "image");
-                fancy.href = img.src;
-                fancy.append(img);
-                content.innerHTML = "";
-                content.append(fancy);
-                break;
-              case "audio":
-                let audio = new Audio();
-                audio.style.outline = "none";
-                audio.preload = "auto";
-                audio.controls = "controls";
-                audio.style.width = "100%";
+              case 'audio':
+                const audio = new Audio();
+                audio.style.outline = 'none';
+                audio.preload = 'auto';
+                audio.controls = 'controls';
+                audio.style.width = '100%';
                 audio.src = url;
-                content.innerHTML = "";
+                content.innerHTML = '';
                 content.append(audio);
                 break;
-              case "video":
-                let video = document.createElement("div");
-                previewHandler.createDplayer(url, suffix, video);
-                content.innerHTML = "";
-                content.append(video);
+              case 'image':
+                const firstLoad = typeof Fancybox === 'undefined';
+                loadResource(
+                  fromCdn(
+                    'taobao',
+                    '/@fancyapps/ui/5.0.36/files/dist/fancybox/fancybox.css',
+                    '/@fancyapps/ui/5.0.36/files/dist/fancybox/fancybox.umd.js'
+                  )
+                )
+                  .then(() => {
+                    if (firstLoad) {
+                      Fancybox.bind('[data-fancybox]');
+                    }
+                    const img = new Image();
+                    img.style.maxWidth = '100%';
+                    img.src = url;
+                    const fancy = document.createElement('a');
+                    fancy.setAttribute('data-fancybox', '');
+                    fancy.dataset.src = url;
+                    fancy.append(img);
+                    content.innerHTML = '';
+                    content.append(fancy);
+                  })
+                  .catch(previewHandler.fallback);
                 break;
-              case "text":
-                sendRequest("GET", url, null, null, (data) => {
-                  let pre = document.createElement("pre");
-                  let code = document.createElement("code");
-                  pre.append(code);
-                  pre.style.background = "rgb(245,245,245)";
-                  pre.style["overflow-x"] = "scroll";
-                  pre.classList.add(suffix);
-                  // content.style.textAlign = "initial";
-                  content.innerHTML = "";
-                  content.append(pre);
-                  code.textContent = data;
-                  if (
-                    size.indexOf(" B") >= 0 ||
-                    (size.indexOf(" KB") && size.split(" ")[0] < 100)
-                  ) {
-                    hljs.highlightBlock(pre);
-                  }
-                });
-                break;
-              case "markdown":
+              case 'markdown':
                 renderMarkdown(path, url);
                 break;
-              case "office":
-                const officeOnline =
-                  "//view.officeapps.live.com/op/view.aspx?src=" +
+              case 'office':
+              case 'pdf':
+                const onlineViewerUrl =
+                  (contentType === 'office'
+                    ? '//view.officeapps.live.com/op/view.aspx?src='
+                    : '//mozilla.github.io/pdf.js/web/viewer.html?file=') +
                   encodeURIComponent(url);
-                let div = document.createElement("div");
-                div.style.lineHeight = "2em";
-                div.style.background = "rgba(218, 215, 215, 0.21)";
-                div.style.webkitTapHighlightColor = "rgba(0, 0, 0, 0)";
-                div.style.cursor = "pointer";
-                div.style.textAlign = "center";
-                div.innerHTML = "新窗口打开";
-                div.addEventListener("click", () => window.open(officeOnline));
-                content.innerHTML = "";
+                const div = document.createElement('div');
+                div.style.lineHeight = '2em';
+                div.style.background = 'rgba(218, 215, 215, 0.21)';
+                div.style.webkitTapHighlightColor = 'rgba(0, 0, 0, 0)';
+                div.style.cursor = 'pointer';
+                div.style.textAlign = 'center';
+                div.innerHTML = '新窗口打开';
+                div.addEventListener('click', () =>
+                  window.open(onlineViewerUrl)
+                );
+                content.innerHTML = '';
                 content.appendChild(div);
                 if (document.body.clientWidth >= 480) {
-                  let iframe = document.createElement("iframe");
-                  iframe.width = "100%";
-                  iframe.style.height = "41em";
-                  iframe.style.border = "0";
-                  iframe.src = officeOnline;
+                  const iframe = document.createElement('iframe');
+                  iframe.width = '100%';
+                  iframe.style.aspectRatio = '16 / 9';
+                  iframe.style.border = '0';
+                  iframe.src = onlineViewerUrl;
                   content.appendChild(iframe);
                 }
                 break;
+              case 'text':
+                loadResource(
+                  fromCdn(
+                    'bytedance',
+                    '/highlight.js/11.4.0/styles/github.min.css',
+                    '/highlight.js/11.4.0/highlight.min.js'
+                  )
+                )
+                  .then(() => {
+                    sendRequest('GET', url, null, null, (data) => {
+                      const pre = document.createElement('pre');
+                      pre.style.background = 'rgb(245,245,245)';
+                      pre.style.padding = '5px';
+                      content.innerHTML = '';
+                      content.append(pre);
+                      pre.textContent = data;
+                      if (size <= 512000) {
+                        hljs.highlightElement(pre);
+                      }
+                    });
+                  })
+                  .catch(previewHandler.fallback);
+                break;
+              case 'video':
+                const video = document.createElement('div');
+                previewHandler
+                  .createDplayer(url, suffix, video)
+                  .then(() => {
+                    content.innerHTML = '';
+                    content.append(video);
+                    previewHandler.scrollToBottom();
+                  })
+                  .catch(previewHandler.fallback);
+                break;
+              case 'videomagnet':
+                fetch(url)
+                  .then((resp) => resp.text())
+                  .then((magnetUrl) => {
+                    loadResource(
+                      fromCdn(
+                        'jsdelivr',
+                        '/@webtor/embed-sdk-js/dist/index.min.js'
+                      )
+                    ).then(() => {
+                      const torrent = document.createElement('div');
+                      torrent.id = 'player';
+                      torrent.className = 'webtor';
+                      torrent.style.width = '100%';
+                      torrent.style.display = 'flex';
+                      torrent.style.alignItems = 'center';
+                      torrent.style.aspectRatio = '16 / 9';
+                      torrent.style.backgroundColor = 'black';
+                      content.innerHTML = '';
+                      content.appendChild(torrent);
+                      window.webtor = window.webtor || [];
+                      window.webtor.push({
+                        id: 'player',
+                        width: '100%',
+                        magnet: magnetUrl.trim(),
+                      });
+                      previewHandler.scrollToBottom();
+                    });
+                  })
+                  .catch(previewHandler.fallback);
+                break;
               default:
-                let textWrapper = document.createElement("div");
-                textWrapper.style.textAlign = "center";
-                textWrapper.innerHTML = "Este documento no admite vistas previas";
-                content.innerHTML = "";
-                content.appendChild(textWrapper);
+                previewHandler.fallback('Este archivo no admite vista previa');
                 break;
             }
-            document.querySelector(".file-name").innerHTML = path;
+            document.querySelector('.file-name').innerHTML = path;
             document
-              .querySelector(".btn.download")
-              .addEventListener("click", () => (location.href = url));
+              .querySelector('.btn.download')
+              .addEventListener('click', () => (location.href = url));
             document
-              .querySelector(".btn.quote")
-              .addEventListener("click", (event) => {
-                previewHandler.copyTextContent(
-                  null,
-                  window.api.url + "?file=" + encodeURI(path)
-                );
-                const btn = document.querySelector(".btn.quote");
-                btn.innerHTML = "已复制";
-                setTimeout(() => (btn.innerHTML = "Cita"), 250);
+              .querySelector('.btn.quote')
+              .addEventListener('click', (event) => {
+                previewHandler.copyTextContent(null, window.api.url + path);
+                const btn = document.querySelector('.btn.quote');
+                btn.innerHTML = '已复制';
+                setTimeout(() => (btn.innerHTML = '引用'), 250);
               });
             document
-              .querySelector(".btn.share")
-              .addEventListener("click", (event) => {
+              .querySelector('.btn.share')
+              .addEventListener('click', (event) => {
                 const sharePath = () => {
-                  let arr = window.backFordwardCache.current.split("/");
-                  let r = "";
+                  const arr = window.backFordwardCache.current.split('/');
+                  let r = '';
                   for (let i = 1; i < arr.length; i++) {
-                    r += "/" + arr[i];
+                    r += '/' + arr[i];
                   }
                   return r;
                 };
@@ -1238,32 +1458,16 @@
                   null,
                   window.location.origin +
                     window.location.pathname +
-                    "?path=" +
-                    encodeURI(sharePath())
+                    '?path=' +
+                    sharePath()
                 );
-                const btn = document.querySelector(".btn.share");
-                btn.innerHTML = "已复制";
-                setTimeout(() => (btn.innerHTML = "Compartir"), 250);
+                const btn = document.querySelector('.btn.share');
+                btn.innerHTML = '已复制';
+                setTimeout(() => (btn.innerHTML = '分享'), 250);
               });
-            switchRightDisplay("preview");
-
-            if (contentType !== "video") return;
-
-            let start = null;
-            let right = document.querySelector(".right");
-            const scrollToBottom = (timestamp) => {
-              if (!start) start = timestamp;
-              let progress = timestamp - start;
-              let last = right.scrollTop;
-              right.scrollTo(0, right.scrollTop + 14);
-              if (right.scrollTop !== last && progress < 1000 * 2) {
-                window.requestAnimationFrame(scrollToBottom);
-              }
-            };
-            window.requestAnimationFrame(scrollToBottom);
           });
         } else {
-          elem.addEventListener("click", (event) => {
+          elem.addEventListener('click', (event) => {
             fetchFileList(path);
             switchBackForwardStatus(path);
           });
@@ -1271,46 +1475,57 @@
       }
 
       function addBackForwardListener() {
-        document.getElementById("arrow-back").addEventListener("click", back);
+        document.getElementById('arrow-back').addEventListener('click', back);
         document
-          .getElementById("arrow-forward")
-          .addEventListener("click", forward);
-        document.querySelector("#main-page").addEventListener("click", () => {
+          .getElementById('arrow-forward')
+          .addEventListener('click', forward);
+        document.querySelector('#main-page').addEventListener('click', () => {
           fetchFileList(window.api.root);
           switchBackForwardStatus(window.api.root);
         });
       }
 
+      function addFileUploadListener() {
+        const fileInput = document.querySelector('.file-upload-input');
+        const fileNameDisplay = document.querySelector('.file-upload-name');
+        fileInput.addEventListener('change', function () {
+          if (fileInput.files.length === 1) {
+            fileNameDisplay.textContent = fileInput.files[0].name;
+          } else if (fileInput.files.length > 1) {
+            fileNameDisplay.textContent =
+              fileInput.files[0].webkitRelativePath?.split('/')[0] ||
+              `共 ${fileInput.files.length} 个文件`;
+          } else {
+            fileNameDisplay.textContent = '未选择文件';
+          }
+        });
+      }
+
       function switchRightDisplay(display) {
-        if (display === "preview") {
-          document.querySelector(".list-header").style.display = "none";
-          document.querySelector("#file-list").style.display = "none";
-          document.querySelector(".markdown-body").style.display = "none";
-          document.querySelector(".password").style.display = "none";
-          document.querySelector(".preview").style.display = "initial";
-        } else if (display === "encrypted") {
-          document.querySelector(".list-header").style.display = "none";
-          document.querySelector("#file-list").style.display = "none";
-          document.querySelector(".markdown-body").style.display = "none";
-          document.querySelector(".preview").style.display = "none";
-          document.querySelector(".password").style.display = "initial";
-          document.querySelector("#readme").innerHTML = "";
-          let content = document.querySelector(".preview .content");
-          if (content) {
-            document.querySelector(".preview .content").innerHTML = "";
-          }
-        } else {
-          document.querySelector(".list-header").style.display = "initial";
-          document.querySelector("#file-list").style.display = "initial";
-          document.querySelector(".markdown-body").style.display = "none";
-          document.querySelector(".preview").style.display = "none";
-          document.querySelector(".password").style.display = "none";
-          document.querySelector("#readme").innerHTML = "";
-          let content = document.querySelector(".preview .content");
-          if (content) {
-            document.querySelector(".preview .content").innerHTML = "";
-          }
+        for (const c of document.querySelector('.right').children) {
+          c.dataset.hidden = '1';
         }
+
+        if (display !== 'preview') {
+          document.querySelector('.preview .content').innerHTML = '';
+        }
+
+        if (display === 'preview') {
+          document.querySelector('.preview').dataset.hidden = '0';
+        } else if (display === 'encrypted') {
+          document.querySelector('.password-wrapper').dataset.hidden = '0';
+        } else if (display === 'upload') {
+          document.querySelector('.file-upload-progress').innerHTML = '';
+          document.querySelector('.file-upload-progress').dataset.hidden = '1';
+          document.querySelector('.file-upload-wrapper').dataset.hidden = '0';
+        } else if (display === 'list') {
+          document.querySelector('#readme').innerHTML = '';
+          document.querySelector('.list-header').dataset.hidden = '0';
+          document.querySelector('#file-list').dataset.hidden = '0';
+          document.querySelector('.markdown-body').dataset.hidden = '0';
+        }
+
+        document.querySelector('.main').dataset.hidden = '0';
       }
 
       function switchBackForwardStatus(path) {
@@ -1321,21 +1536,21 @@
           window.backFordwardCache.root !== window.backFordwardCache.current
         ) {
           window.backFordwardCache.backable = true;
-          document.getElementById("arrow-back").style.color = "black";
+          document.getElementById('arrow-back').style.color = 'black';
         } else {
           window.backFordwardCache.backable = false;
-          document.getElementById("arrow-back").style.color =
-            "rgb(218, 215, 215)";
+          document.getElementById('arrow-back').style.color =
+            'rgb(218, 215, 215)';
         }
         if (
           window.backFordwardCache.deepest !== window.backFordwardCache.current
         ) {
           window.backFordwardCache.forwardable = true;
-          document.getElementById("arrow-forward").style.color = "black";
+          document.getElementById('arrow-forward').style.color = 'black';
         } else {
           window.backFordwardCache.forwardable = false;
-          document.getElementById("arrow-forward").style.color =
-            "rgb(218, 215, 215)";
+          document.getElementById('arrow-forward').style.color =
+            'rgb(218, 215, 215)';
         }
       }
 
@@ -1347,8 +1562,8 @@
           fetchFileList(window.backFordwardCache.current);
         } else {
           let former = (() => {
-            let formerEndIndex =
-              window.backFordwardCache.current.lastIndexOf("/");
+            const formerEndIndex =
+              window.backFordwardCache.current.lastIndexOf('/');
             return window.backFordwardCache.current.substring(
               0,
               formerEndIndex
@@ -1367,23 +1582,27 @@
         }
         const current =
           window.backFordwardCache.current === window.api.root
-            ? ""
+            ? ''
             : window.backFordwardCache.current;
         const subLength = current ? current.length : 0;
         const later =
           current +
-          "/" +
-          window.backFordwardCache.deepest.substring(subLength).split("/")[1];
+          '/' +
+          window.backFordwardCache.deepest.substring(subLength).split('/')[1];
         fetchFileList(later);
         switchBackForwardStatus();
         // console.log(window.backFordwardCache);
       }
 
       async function preCache(files, level) {
+        if (!window.GLOBAL_CONFIG.PRELOAD) {
+          return;
+        }
+
         if (level > 1) return;
         files.files.forEach((file) => {
-          const parent = files.parent === "/" ? "" : files.parent;
-          const path = parent + "/" + file.name;
+          const parent = files.parent === '/' ? '' : files.parent;
+          const path = parent + '/' + file.name;
           if (!file.url) {
             // console.log('caching ' + path + ', level ' + level);
             window.fileCache.set(path, true);
@@ -1399,11 +1618,11 @@
               },
               () => window.fileCache.set(path, false)
             );
-          } else if (file.name.split(".").pop() === "md") {
+          } else if (file.name.endsWith('.md')) {
             // console.log('caching ' + path + ', level ' + level);
             window.fileCache.set(path, true);
             sendRequest(
-              "GET",
+              'GET',
               file.url,
               null,
               null,
@@ -1415,9 +1634,13 @@
       }
 
       async function preCacheCheck(cache, path) {
+        if (!window.GLOBAL_CONFIG.PRELOAD) {
+          return;
+        }
+
         cache.files.forEach((file) => {
-          const prefix = path === window.api.root ? "" : path;
-          const nextPath = prefix + "/" + file.name;
+          const prefix = path === window.api.root ? '' : path;
+          const nextPath = prefix + '/' + file.name;
           const pathCache = window.fileCache.get(nextPath);
           if (!file.url) {
             if (!pathCache) {
@@ -1438,12 +1661,12 @@
             } else if (pathCache.files) {
               preCacheCheck(pathCache, nextPath);
             }
-          } else if (file.name.split(".").pop() === "md") {
+          } else if (file.name.endsWith('.md')) {
             if (!pathCache && pathCache !== true) {
               // console.log('inner caching ' + nextPath);
               window.fileCache.set(nextPath, true);
               sendRequest(
-                "GET",
+                'GET',
                 file.url,
                 null,
                 null,
@@ -1457,12 +1680,12 @@
 
       function fetchFileList(path) {
         // console.log('fetching ' + path);
-        let loading = document.querySelector(".loading-wrapper");
-        loading.style.display = "initial";
+        const loading = document.querySelector('.loading-wrapper');
+        loading.dataset.hidden = '0';
         window.backFordwardCache.preview = false;
         window.backFordwardCache.current = path;
 
-        let cache = window.fileCache.get(path);
+        const cache = window.fileCache.get(path);
         if (cache === true) {
           setTimeout(() => fetchFileList(path), 200);
         } else if (cache) {
@@ -1478,39 +1701,210 @@
             renderPage,
             () => {
               window.fileCache.set(path, false);
-              const loadingText = loading.querySelector(".loading");
-              loadingText.innerText = "Failed!";
+              const loadingText = loading.querySelector('.loading');
+              loadingText.innerText = 'Failed!';
               setTimeout(() => {
-                loading.style.display = "none";
-                loadingText.innerText = "Loading..";
+                loading.dataset.hidden = '1';
+                loadingText.innerText = 'Loading..';
               }, 2000);
             }
           );
         }
       }
 
-      document.addEventListener("DOMContentLoaded", () => {
+      function uploadFiles() {
+        const pageSize = 20;
+        const fileInput = Array.from(
+          document.getElementById('file-upload-input').files
+        );
+        const odPath = window.backFordwardCache.current;
+        const upFileList = fileInput.map((f) => ({
+          remotePath: `${odPath}/${relativePath(f)}`,
+          fileSize: f.size ? 1 : 0,
+        }));
+
+        function paginate(array, size) {
+          const paginatedArray = [];
+          for (let i = 0; i < array.length; i += size) {
+            paginatedArray.push(array.slice(i, i + size));
+          }
+          return paginatedArray;
+        }
+
+        const paginatedUpFileList = paginate(upFileList, pageSize);
+
+        function sendPage(pageIndex = 0) {
+          if (pageIndex >= paginatedUpFileList.length) {
+            window.fileCache.delete(window.backFordwardCache.current);
+            createUploadLogLine().className = 'log-separator';
+            return;
+          }
+
+          const currentPage = paginatedUpFileList[pageIndex];
+          sendRequest(
+            window.api.method,
+            window.api.url + '?upload',
+            window.api.formatPayload(
+              odPath,
+              window.fileCache.get(`${odPath}/.upload`) || '',
+              {
+                files: currentPage,
+              }
+            ),
+            window.api.headers,
+            (response) => {
+              const uploadLinks = JSON.parse(response).files;
+              Promise.all(
+                uploadLinks.map(({ remotePath, uploadUrl }) =>
+                  uploadFileWithProgress(
+                    fileInput.find(
+                      (f) => `${odPath}/${relativePath(f)}` === remotePath
+                    ),
+                    uploadUrl
+                  )
+                )
+              ).finally(() => sendPage(pageIndex + 1));
+            }
+          );
+        }
+
+        createUploadLogLine().className = 'log-separator';
+        document.querySelector('.file-upload-progress').dataset.hidden = '0';
+        sendPage(0);
+
+        function relativePath(file) {
+          return `${file.webkitRelativePath || file.name}`;
+        }
+
+        function createUploadLogLine() {
+          const progressDiv = document.querySelector('.file-upload-progress');
+          const progressText = document.createElement('div');
+          const progressContainer = document.createElement('div');
+          progressDiv.appendChild(progressContainer);
+          progressContainer.appendChild(progressText);
+          return progressText;
+        }
+
+        async function uploadFileWithProgress(file, uploadUrl) {
+          const chunkSize = 1024 * 1024 * 10;
+          const fileSize = file.size;
+          let uploadedBytes = 0;
+          let start = 0;
+
+          const progressText = createUploadLogLine();
+          if (fileSize === 0) {
+            updateTotalProgress();
+          } else {
+            while (start < fileSize) {
+              try {
+                await uploadChunk(start);
+                start = Math.min(start + chunkSize, fileSize);
+              } catch (error) {
+                if (!(await handleUploadError(error))) {
+                  progressText.innerHTML += ' <mark>Upload failed!</mark>';
+                  return;
+                }
+              }
+            }
+          }
+          progressText.innerHTML += ' Upload completed!';
+
+          function uploadChunk(start) {
+            const xhr = new XMLHttpRequest();
+            const end = Math.min(start + chunkSize, fileSize);
+            const chunk = file.slice(start, end);
+
+            xhr.open('PUT', uploadUrl);
+            xhr.setRequestHeader(
+              'Content-Range',
+              `bytes ${start}-${end - 1}/${fileSize}`
+            );
+
+            return new Promise((resolve, reject) => {
+              xhr.onloadend = () => {
+                if (xhr.status >= 200 && xhr.status < 300) {
+                  uploadedBytes = end;
+                  updateTotalProgress();
+                  resolve(xhr.status);
+                } else {
+                  reject(xhr.status);
+                }
+              };
+
+              xhr.upload.onprogress = (event) => {
+                if (event.lengthComputable) {
+                  uploadedBytes = start + event.loaded;
+                  updateTotalProgress();
+                }
+              };
+
+              xhr.send(chunk);
+            });
+          }
+
+          async function handleUploadError(error) {
+            let retryCount = 10,
+              delayTime = 1;
+            while (retryCount > 0) {
+              retryCount--;
+              if (error === 416) {
+                await new Promise((resolve) =>
+                  sendRequest('GET', uploadUrl, null, null, (data) => {
+                    start = parseInt(
+                      JSON.parse(data).nextExpectedRanges[0].split('-')[0]
+                    );
+                    resolve();
+                  })
+                );
+                return true;
+              } else {
+                await new Promise((resolve) =>
+                  setTimeout(resolve, Math.min((delayTime *= 2) * 1000, 32000))
+                );
+                try {
+                  await uploadChunk(start);
+                  return true;
+                } catch (err) {
+                  error = err;
+                }
+              }
+            }
+            return false;
+          }
+
+          function updateTotalProgress() {
+            const percentComplete = fileSize
+              ? Math.round((uploadedBytes / fileSize) * 100)
+              : 100;
+            const progressBar =
+              '[' +
+              '='.repeat(percentComplete / 5) +
+              ' '.repeat(20 - percentComplete / 5) +
+              ']';
+            progressText.textContent = `${relativePath(
+              file
+            )}: ${progressBar} ${percentComplete}%`;
+          }
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
         document.title = window.GLOBAL_CONFIG.SITE_NAME;
-        document.querySelector(".site").textContent =
+        document.querySelector('.site').textContent =
           window.GLOBAL_CONFIG.SITE_NAME;
         window.api = {
-          root: "/",
+          root: '/',
           url: window.GLOBAL_CONFIG.SCF_GATEWAY,
-          method: "POST",
-          formatPayload: (path, passwd) => {
-            return (
-              "?path=" +
-              encodeURIComponent(path) +
-              "&encrypted=" +
-              window.api.accessToken.encrypted +
-              "&plain=" +
-              window.api.accessToken.plain +
-              "&passwd=" +
-              passwd
-            );
-          },
+          method: 'POST',
+          formatPayload: (path, passwd, kvs) =>
+            JSON.stringify({
+              path,
+              passwd,
+              ...window.api.accessToken,
+              ...kvs,
+            }),
           headers: {
-            "Content-type": "application/x-www-form-urlencoded",
+            'Content-type': 'application/json; charset=utf-8',
           },
         };
         window.backFordwardCache = {
@@ -1522,20 +1916,18 @@
           preview: false,
         };
         window.fileCache = new Map();
+        window.resourceCache = Object.create(null);
         const initialPath =
-          new URLSearchParams(window.location.search).get("path") ||
+          new URLSearchParams(window.location.search).get('path') ||
           window.api.root;
         if (window.GLOBAL_CONFIG.IS_CF) {
-          window.api.accessToken = {
-            encrypted: "",
-            plain: "",
-          };
           fetchFileList(initialPath);
           addBackForwardListener();
+          addFileUploadListener();
         } else {
           sendRequest(
             window.api.method,
-            window.api.url + "?accessToken",
+            window.api.url + '?accessToken',
             null,
             window.api.headers,
             (data) => {
@@ -1546,12 +1938,14 @@
               };
               fetchFileList(initialPath);
               addBackForwardListener();
+              addFileUploadListener();
             }
           );
         }
       });
     </script>
   </head>
+
   <body>
     <template id="tree-node-wrapper-template">
       <div class="tree-node-wrapper">
@@ -1599,17 +1993,19 @@
       </div>
     </div>
     <div class="container">
-      <div class="main">
+      <div class="main" data-hidden="1">
         <div class="left">
           <div id="tree-root"></div>
         </div>
         <div class="right">
-           <center> <img src="https://i.ibb.co/X4ZvCwy/sphinxanime-vip-banner.jpg" class="img-fluid"> <center>
+          <div class="upload-entry-wrapper">
+            <button class="upload-entry-btn">在此上传文件</button>
+          </div>
           <div class="list-header">
+          <center> <img src="https://i.ibb.co/QPnLyk8/sphinxdrivebanner-sphinx.jpg" class="img-fluid"> <center>
             <div class="row">
               <div class="file">
                 <span class="name">ITEMS</span>
-                <span class="time">TIME</span>
                 <span class="size">SIZE</span>
               </div>
             </div>
@@ -1621,20 +2017,45 @@
           <div class="preview">
             <div class="info">
               <div class="file-name"></div>
-              <div class="btn download">DESCARGAR</div>
-              <div class="btn quote">Citar</div>
+              <div class="btn download">Descargar</div>
               <div class="btn share">Compartir</div>
             </div>
             <div class="content"></div>
           </div>
           <div class="password-wrapper">
+             <center> <img src="https://i.ibb.co/QPnLyk8/sphinxdrivebanner-sphinx.jpg" class="img-fluid"> <center>
+                <br> 
+              <br> 
             <div class="password">
               <input type="password" />
-              <button>ENVIAR</button>
-              <br> 
-              <br> 
+              <button>Enviar</button>
+                  </div> 
+               <br> 
+              <br>
               <center> <img src="https://i.ibb.co/D4Z3QLX/sphinxpremiumcontrase-a.jpg" class="img-fluid"> <center>
             </div>
+          </div>
+          <div class="file-upload-wrapper">
+            <div class="file-upload-chooser">
+              <select
+                onchange="document.getElementById('file-upload-input').webkitdirectory=this.value;"
+              >
+                <option value="">上传文件</option>
+                <option value="1">上传文件夹</option>
+              </select>
+              <label for="file-upload-input" class="file-upload-label"
+                >选择文件</label
+              >
+              <input
+                class="file-upload-input"
+                type="file"
+                id="file-upload-input"
+                multiple="multiple"
+              />
+              <span class="file-upload-name">未选择文件</span>
+              <button onclick="uploadFiles()">上传</button>
+            </div>
+            <div class="file-upload-progress"></div>
           </div>
         </div>
       </div>
