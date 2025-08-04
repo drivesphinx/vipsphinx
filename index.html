@@ -3,9 +3,9 @@
   <head>
     <script>
       window.GLOBAL_CONFIG = {
-        SCF_GATEWAY: `//vip.sphx.workers.dev`, 
-        SITE_NAME: `SphinxDrive VIP`, 
-        IS_BUSINESS: true, // 是否为商业版，E5 请改为 true
+        SCF_GATEWAY: `//vip.sphx.workers.dev`, // worker 地址
+        SITE_NAME: `SphinxDrive VIP`, // 站点名称，显示在右上角
+        IS_BUSINESS: false, // 是否为商业版，E5 请改为 true
         PRELOAD: false, // 是否预加载文件列表，文件夹非常少才建议开启
       };
     </script>
@@ -418,9 +418,8 @@
 
       * {
         box-sizing: border-box;
-        font-family: BlinkMacSystemFont,-apple-system,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
+        font-family: serif;
         outline: none;
-        background-image: url(https://i.ibb.co/60SMWbKn/mantenimiento2025.jpg); background-repeat: no-repeat; background-attachment: fixed;
         -webkit-tap-highlight-color: transparent; /* Removes touch background */
         -webkit-touch-callout: none; /* Removes the callout on touch */
       }
@@ -584,9 +583,9 @@
       }
 
       .row.file-wrapper {
-        font-size: 1.0em;
-        padding: 0 3em;
-        height: 3em;
+        font-size: 0.8em;
+        padding: 0 1em;
+        height: 2em;
       }
 
       .row.file-wrapper i {
@@ -1301,14 +1300,14 @@
         const buttonParent = button.parentElement;
         const buttonClone = button.cloneNode(true);
         buttonParent.replaceChild(buttonClone, button);
-        input.placeholder = 'Contraseña...';
+        input.placeholder = '请输入密码';
         buttonClone.addEventListener('click', (event) => {
           const passwd = input.value;
           if (!input.value) {
             return;
           }
           input.value = '';
-          input.placeholder = 'Verificando...';
+          input.placeholder = '正在验证..';
           sendRequest(
             window.api.method,
             window.api.url,
@@ -1317,7 +1316,7 @@
             (data) => {
               const newFiles = JSON.parse(data);
               if (newFiles.encrypted) {
-                input.placeholder = 'Contraseña incorrecta...';
+                input.placeholder = '密码错误';
               } else {
                 window.fileCache.set(newFiles.parent, newFiles);
                 window.fileCache.set(`${newFiles.parent}/.password`, passwd);
@@ -2272,7 +2271,6 @@
             <button class="upload-entry-btn">在此上传文件</button>
           </div>
           <div class="list-header">
-             <center> <img src="https://i.ibb.co/X4ZvCwy/sphinxanime-vip-banner.jpg" class="img-fluid"> <center>
             <div class="row">
               <div class="file">
                 <div class="name" onclick="sortList(this)">
@@ -2280,6 +2278,9 @@
                   <i class="zmdi zmdi-chevron-up"></i>
                 </div>
                 <div class="lastModifiedDateTime" onclick="sortList(this)">
+                  <span>TIME</span>
+                  <i class="zmdi zmdi-chevron-up"></i>
+                </div>
                 <div class="size" onclick="sortList(this)">
                   <span>SIZE</span>
                   <i class="zmdi zmdi-chevron-up"></i>
@@ -2294,15 +2295,16 @@
           <div class="preview">
             <div class="info">
               <div class="file-name"></div>
-              <div class="btn download">Descargar</div>
-              <div class="btn share">Compartir</div>
+              <div class="btn download">下载</div>
+              <div class="btn quote">引用</div>
+              <div class="btn share">分享</div>
             </div>
             <div class="content"></div>
           </div>
           <div class="password-wrapper">
             <div class="password">
               <input type="password" />
-              <button>Enviar</button>
+              <button>提交</button>
             </div>
           </div>
           <div class="file-upload-wrapper">
